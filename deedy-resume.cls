@@ -1,6 +1,6 @@
-%----------------------------------------------------------------------------------------
-%	CLASS OPTIONS AND REQUIRED PACKAGES
-%----------------------------------------------------------------------------------------
+
+
+
 
 \ProvidesClass{deedy-resume}[2014/04/30 CV class]
 \NeedsTeXFormat{LaTeX2e}
@@ -8,91 +8,123 @@
 \ProcessOptions\relax
 \LoadClass{article}
 
-\usepackage[hmargin=1.25cm, vmargin=0.75cm]{geometry} % Specifies horizontal and vertical page margins
-\usepackage{hyperref} % Required for links
+\usepackage[hmargin=0.625cm, vmargin=0.375cm]{geometry}
+\usepackage{hyperref}
+\usepackage{amssymb}
 
-%----------------------------------------------------------------------------------------
-%	COLORS
-%----------------------------------------------------------------------------------------
 
-\usepackage[usenames,dvipsnames]{xcolor} % Required for custom colors
 
-\definecolor{primary}{HTML}{2b2b2b} % The primary document color for content text
-\definecolor{headings}{HTML}{6A6A6A} % The color of the large sections
-\definecolor{subheadings}{HTML}{333333} % The color of subsections and places worked/studied
-\definecolor{date}{HTML}{666666} % The color used for the Last Updated text at the top right
 
-%----------------------------------------------------------------------------------------
-%	FONTS
-%----------------------------------------------------------------------------------------
 
-\usepackage{fontspec} % Required for specifying custom fonts in XeLaTeX
+\usepackage[usenames,dvipsnames]{xcolor}
 
-\setmainfont[Color=primary, Path = fonts/lato/,BoldItalicFont=Lato-RegIta,BoldFont=Lato-Reg,ItalicFont=Lato-LigIta]{Lato-Lig} % The primary font for content text; defines bold, italic and bold-italic as well
+\definecolor{primary}{HTML}{101010}
+\definecolor{headings}{HTML}{202020}
+\definecolor{subheadings}{HTML}{000000}
+\definecolor{date}{HTML}{666666}
 
-\setsansfont[Scale=MatchLowercase,Mapping=tex-text, Path = fonts/raleway/]{Raleway-ExtraLight} % The font used where \sfffamily is called
 
-%----------------------------------------------------------------------------------------
-%	LAST UPDATED COMMAND
-%----------------------------------------------------------------------------------------
 
-\usepackage[absolute]{textpos} % Required for positioning the Last Updated text at the top right of the page
-\usepackage[UKenglish]{isodate} % Prints the Last Updated date in UK English format
 
-\setlength{\TPHorizModule}{0.01\paperwidth} % Sets the units for the horizontal position used in the \begin{textblock} argument
-\setlength{\TPVertModule}{0.01\paperwidth} % Sets the units for the vertical position used in the \begin{textblock} argument
-\newcommand{\lastupdated}{ % Create a new command for printing the Last Updated text
-\begin{textblock}{25}(75,2) % The position of the Last Updated text on the page (75% of the page across, 2% down)
-\color{date}\fontspec[Path = fonts/raleway/]{Raleway-ExtraLight}\fontsize{8pt}{10pt}\selectfont % Text styling of the text
-Last Updated on \today % Last Updated text
+
+\usepackage{fontspec}
+
+\setmainfont[Color=primary, Path = fonts/lato/,BoldItalicFont=Lato-RegIta,BoldFont=Lato-Reg,ItalicFont=Lato-LigIta]{Lato-Lig}
+
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text, Path = fonts/raleway/]{Raleway-ExtraLight}
+
+
+
+
+
+\usepackage[absolute]{textpos}
+\usepackage[UKenglish]{isodate}
+\usepackage{mdframed}
+\usepackage{calc}
+
+\setlength{\TPHorizModule}{0.01\paperwidth}
+\setlength{\TPVertModule}{0.01\paperwidth}
+\newcommand{\lastupdated}{
+\begin{textblock}{25}(75,2)
+\color{date}\fontspec[Path = fonts/raleway/]{Raleway-ExtraLight}\fontsize{8pt}{10pt}\selectfont
+Last Updated on \today
 \end{textblock}}
 
-%----------------------------------------------------------------------------------------
-%	MAIN HEADING COMMAND
-%----------------------------------------------------------------------------------------
 
-\newcommand{\namesection}[3]{ % Defines the command for the main heading
-\centering{ % Center the name
-\fontsize{30pt}{45pt} % Font size
-\fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont #1 % First name font
-\fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont #2 % Last name font
-} \\[5pt] % Whitespace between the name and contact information
-\centering{ % Center the contact information
-\color{headings} % Use the headings color
-\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{11pt}\selectfont #3} % Contact information font
-\noindent\makebox[\linewidth]{\color{headings}\rule{\paperwidth}{0.4pt}} % Horizontal rule
-\vspace{-5pt} % Reduce whitespace after the rule slightly
+
+
+
+\newcommand{\chrule}[1]{\begin{minipage}{#1}
+        \begin{mdframed}[rightline=false, leftline=false, bottomline=false]
+        \end{mdframed}
+        \end{minipage}}
+
+        \newcommand{\cvrule}[2]{\hspace{#1}\begin{minipage}{1pt}
+        \begin{mdframed}[rightline=false, topline=false, bottomline=false]
+            \vspace{#2}
+        \end{mdframed}
+        \end{minipage}}
+
+\newcommand{\namesection}[3]{
+\centering{
+\fontsize{30pt}{45pt}
+\fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont #1
+\fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont #2
+} \\[5pt]
+\centering{
+\color{headings}
+\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{11pt}\selectfont #3}
 }
 
-%----------------------------------------------------------------------------------------
-%	SECTION TITLE STYLING AND SPACING
-%----------------------------------------------------------------------------------------
 
-\usepackage{titlesec} % Required for customizing section/subsection/etc titles
 
-\titlespacing{\section}{0pt}{0pt}{0pt} % Removes the spacing around the main section titles
-\titlespacing{\subsection}{0pt}{0pt}{0pt} % Removes the spacing around the subsections
-\newcommand{\sectionspace}{\vspace{8pt}} % Defines a command to add a set amount of space after sections and subsections
 
-\titleformat{\section}{ % Customize the large section titles
-\color{headings}\scshape\fontspec[Path = fonts/lato/]{Lato-Lig}\fontsize{16pt}{24pt}\selectfont \raggedright\uppercase}{}{0em}{}
 
-\titleformat{\subsection}{ % Customize the subsections and places worked/studied titles
-\color{subheadings}\fontspec[Path = fonts/lato/]{Lato-Bol}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase}{}{0em}{}
+\usepackage[center]{titlesec}
 
-\newcommand{\runsubsection}[1]{ % Used for creating subsections where a description is required on the same line
-\color{subheadings}\fontspec[Path = fonts/lato/]{Lato-Bol}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase {#1} \normalfont}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\newcommand{\sectionspace}{\vspace{8pt}}
 
-\newcommand{\descript}[1]{ % Used for describing the subsection either on the same line or underneath
+\titleformat{\section}{
+\color{headings}\fontspec[Path = fonts/lato/]{Lato-Reg}\fontsize{16pt}{24pt}\selectfont\uppercase}{}{1em}{}
+
+\titleformat{\subsection}{
+\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont}{}{0em}{}
+
+\newcommand{\runsubsection}[1]{
+\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont\textsc{#1} \normalfont}
+
+\newcommand{\descript}[1]{
 \color{subheadings}\raggedright\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont {#1 \\} \normalfont}
 
-\newcommand{\location}[1]{ % Used for specifying a duration and/or location under a subsection
+\newcommand{\location}[1]{
 \color{headings}\raggedright\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont {#1\\} \normalfont}
 
-%----------------------------------------------------------------------------------------
-%	SECTION TITLE STYLING AND SPACING
-%----------------------------------------------------------------------------------------
+\newcommand{\lstyle}[1]{
+\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont \textcolor{headings}{#1}\normalfont}
 
-\newenvironment{tightitemize} % Defines the tightitemize environment which modifies the itemize environment to be more compact
+
+
+
+
+\newenvironment{tightitemize}
 {\vspace{-\topsep}\begin{itemize}\itemsep1pt \parskip0pt \parsep0pt}
 {\end{itemize}\vspace{-\topsep}}
+
+\usepackage{enumitem}
+\renewcommand{\labelitemi}{\textcolor{black}{$\rightarrow$}}
+
+\newcommand{\separatepages}[4]{%
+    \vspace{2.5pt}
+    \begin{minipage}[t]{#1\textwidth}
+        #3
+    \end{minipage}
+    \begin{minipage}[t]{#2\textwidth}
+        #4
+    \end{minipage}
+    \vspace{2.5pt}
+}
+
+\newcommand*{\LargerCdot}{\raisebox{-0.25ex}{\scalebox{1.5}{$\cdot$}}}
+\newcommand{\sepbullet}{\hspace{1pt}$\LargerCdot$\hspace{1pt}}

@@ -1,104 +1,86 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Deedy CV/Resume
-% XeLaTeX Template
-% Version 1.0 (5/5/2014)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% Original author:
-% Debarghya Das (http://www.debarghyadas.com)
-% With extensive modifications by:
-% Vel (vel@latextemplates.com)
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-% Important notes:
-% This template needs to be compiled with XeLaTeX.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[letterpaper]{deedy-resume} % Use US Letter paper, change to a4paper for A4 
+\documentclass[letterpaper]{deedy-resume}
 \usepackage{textpos}
+\usepackage{svg}
+\usepackage{calc}
+
+\usepackage{ifluatex}
+\ifluatex
+  \usepackage{pdftexcmds}
+  \makeatletter
+  \let\pdfstrcmp\pdf@strcmp
+  \let\pdffilemoddate\pdf@filemoddate
+  \makeatother
+\fi
 
 \begin{document}
 
-%----------------------------------------------------------------------------------------
-%	TITLE SECTION
-%----------------------------------------------------------------------------------------
+\newcommand*{\xdash}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
-\begin{textblock}{2}[0.5,0.5](10,7)
-\includegraphics[width=60px]{Rahm_GR.jpg}
-\end{textblock}
-\lastupdated % Print the Last Updated text at the top right
+\begin{minipage}[t]{0.30\textwidth}
 
-\namesection{Joshua}{Rahm}{ % Your name
-joshuarahm@gmail.com | (720)-243-2230 \\ % Your contact information
-1953 Goss St. Apt. \#4, Boulder, CO 80302
-}
+    \vspace{0pt}
 
-%----------------------------------------------------------------------------------------
-%	LEFT COLUMN
-%----------------------------------------------------------------------------------------
+    \begin{minipage}{0.9\textwidth}
+        \begin{center}
 
-\begin{minipage}[t]{0.33\textwidth} % The left column takes up 33% of the text width of the page
-\section{Summary}
+            \fontsize{24pt}{24pt}
+            \fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont{Josh}
+            \fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont{Rahm}
+
+            \includesvg[height=20pt]{blackbird3}
+
+            \lstyle{%
+                joshuarahm@gmail.com \\
+                (720) 243 2230
+                \\[5pt]
+                1953 Goss St. Apt. \#4 \\
+                Boulder, CO 80302
+            }
+
+            \vspace{10pt}
+            \xdash[6em]
+            \vspace{10pt}
+        \end{center}
+    \end{minipage}\cvrule{0pt}{5em}
+
 \raggedright
 Highly skilled and versatile software engineer with over 5 years of personal,
 academic and professional success looking to exercise my skills building quality
 software.
 
 
-%------------------------------------------------
-% Education
-%------------------------------------------------
 
-\section{Education} 
+
+\section{Education}
 
 \subsection{University of Colorado}
 
-\sectionspace % Some whitespace after the section
+\sectionspace
 
 \descript{MS/BS in Computer Science}
-\location{Expected May 2016 | Boulder, CO}
-Software Engineering Track \\
-College of Engineering \\
-Dean's List (All Semesters) \\
-\location{ Cum. GPA: 3.90 / 4.0 \\
-Major GPA: 3.94 / 4.0}
+\location{May 2016 (Expected) | Boulder, CO}
+\vspace{\topsep}
+\sepbullet \lstyle{Cum. GPA: 3.90 / 4.0} \\
+\sepbullet \lstyle{Major GPA: 3.94 / 4.0} \\
+\sepbullet Software Engineering Track \\
+\sepbullet College of Engineering \\
+\sepbullet Dean's List (All Semesters)
 
-\sectionspace % Some whitespace after the section
 
-%------------------------------------------------
-\raggedright 
-\subsection{SCJA}
 
-\location{Sun-Certified Java Associate | April 9th 2010}
+\section{Links}
 
-\sectionspace % Some whitespace after the section
+\begin{tabular}{l l}
+    \lstyle{Github} & https://github.com/jrahm \\
+    \lstyle{Website} &  http://jarahm.com \\
+\end{tabular}
 
-%------------------------------------------------
-% Links
-%------------------------------------------------
+\sectionspace
 
-\section{Links} 
 
-\location{Github}
 
-https://github.com/jrahm
-
-\location{Website}
-
-http://jarahm.com
-
-\sectionspace % Some whitespace after the section
-
-%------------------------------------------------
-% Coursework
-%------------------------------------------------
-
-\section{Relevant Coursework}
+\section{Coursework}
 
 Ethical Hacking \\
 Unix System Administration \\
@@ -107,61 +89,60 @@ Operating Systems \\
 Advanced Graphics \\
 Software Engineering
 
-\sectionspace % Some whitespace after the section
-\section{Achievements} 
+\sectionspace
+\section{Achievements}
 
-\begin{description}
-\item[September 17th, 2014 |]
-    AppSec 2014 CTF, Tied for 1st
-\item[March 1st, 2014 |]
-    Rocky Mountain Collegiate Cyber Defence Competition, 2nd Place
-\item[February 6th, 2010 |]
-    District Tech Fair Champion
-\item[February 8th, 2009 |]
-    District Tech Fair 3rd Place
-\end{description}
+\separatepages{0.4}{0.58}{\lstyle{17 Sep 2014}}
+    {\raggedright AppSec 2014 CTF, Tied for 1st}
 
-%----------------------------------------------------------------------------------------
+    \separatepages{0.4}{0.58}{\lstyle{1 Mar 2014}}
+    {\raggedright Rocky Mountain Collegiate Cyber Defence Competition, 2nd Place}
 
-\end{minipage} % The end of the left column
+    \separatepages{0.4}{0.58}{\lstyle{6 Feb 2010}}
+    {\raggedright District Tech Fair Champion}
+
+    \separatepages{0.4}{0.58}{\lstyle{8 Feb 2009}}
+    {\raggedright District Tech Fair 3rd Place}
+
+
+\end{minipage}
 \hfill
-%
-%----------------------------------------------------------------------------------------
-%	RIGHT COLUMN
-%----------------------------------------------------------------------------------------
-%
-\begin{minipage}[t]{0.66\textwidth} % The right column takes up 66% of the text width of the page
-
-%------------------------------------------------
-% Experience
-%------------------------------------------------
-%
+\begin{minipage}[t]{0.66\textwidth}
 
 \section{Skills}
-\location{Languages:}
-Java \textbullet{} C/C++ \textbullet{} Python \textbullet{} Haskell \textbullet{} Bash \textbullet{} x86 Assembly \textbullet{} JavaScript \textbullet{} \LaTeX \textbullet{} MySQL
-    
-\location{Operating Systems:}
-Linux (CentOS, Debian, Gentoo, Arch) \textbullet{} Mac OSX \textbullet{} Windows
 
-\location{Environments:}
-Vim \textbullet{} Eclipse \textbullet{} Bash \textbullet{} Git \textbullet{} Subversion \textbullet{} Perforce \textbullet{} Agile
+\separatepages{0.27}{0.70}{\lstyle{Languages}}{%
+\raggedright Java\sepbullet C/C++\sepbullet Python\sepbullet Haskell\sepbullet Bash\sepbullet x86 Assembly\sepbullet JavaScript\sepbullet \LaTeX\sepbullet MySQL}
 
-\location{Development:}
-Object Oriented \textbullet{} Functional \textbullet{} Event Driven
-\textbullet{} Concurrent \textbullet{} OpenGL \textbullet{} Embedded
+\separatepages{0.27}{0.70}{%
+\lstyle{Operating Systems}}{%
+\raggedright Linux (Debian, Fedora, Arch)\sepbullet BSD\sepbullet Mac\sepbullet Windows}
+
+\separatepages{0.27}{0.70}{%
+\lstyle{Environments}}{%
+\raggedright Vim\sepbullet Eclipse\sepbullet Git\sepbullet Subversion\sepbullet Perforce\sepbullet IntelliJ}
+
+\separatepages{0.27}{0.70}{%
+\lstyle{Development}}{%
+\raggedright Object Oriented\sepbullet Functional\sepbullet Event Driven
+\sepbullet Concurrent\sepbullet OpenGL\sepbullet Embedded\sepbullet Agile}
 
 \section{Experience}
+\runsubsection{Google}
+\descript{| Software Engineer}
+\location{Jun 2016 (Expected) | Boulder, CO}
+\sectionspace
+\sectionspace
+
 \runsubsection{Seagate Technology}
 \descript{| Software Engineer Intern}
-\location{May 2015 - August 2015 | Longmont, CO}
-\vspace{\topsep} % Hacky fix for awkward extra vertical space
-\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\location{May 2015 - Aug 2015 | Longmont, CO}
+\vspace{\topsep}
 \begin{tightitemize}
 \item Patched subsystem to use parallelism to enhance user experience.
 \item Extended desktop application written in C++ and wxWidgets.
 \item Refactored and restructured subsystem interaction.
-\item Reduced memory usage by nearly 50\% by using optimal data structures.
+\item Reduced memory usage by nearly 50\
 \item Rebuilt ANSI-compliant terminal emulator.
 \item Designed communication layer between JavaScript and C++ front-end code.
 \item Wrote scripts for automatically testing application as a cron-job.
@@ -169,7 +150,7 @@ Object Oriented \textbullet{} Functional \textbullet{} Event Driven
 \item Heavy experience using Git with Subversion.
 \end{tightitemize}
 
-\sectionspace % Some whitespace after the section
+\sectionspace
 
 
 
@@ -177,78 +158,63 @@ Object Oriented \textbullet{} Functional \textbullet{} Event Driven
 \descript{| Software Engineering Intern}
 
 \location{May 2012 – Aug 2014 | Westminster, CO}
-\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\vspace{\topsep}
 In large and small teams, demonstrated quality leadership and technical skills to develop advanced
 software solutions from start to completion.
-\vspace{\topsep} % Hacky fix for awkward extra vertical space
-\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\vspace{\topsep}
 \begin{tightitemize}
 \item Demonstrated functionality of end product to other engineers and customers
 \item Developed advanced point to point routing layer for wireless sensor network
 \item Interfaced with hardware modem to collect RF topology data
 \item Used Code Collaborator to conduct code reviews
-\item Securely tarnsfered encrypted data over public network.
+\item Securely transfered encrypted data over public network.
 \item Created User-Space I2C drivers to interface with embedded sensors;
 \item Constructed utilities to emulate and interface with serial devices
 \item Developed WebSockets server built to Hixie76 and RFC6455 standards
 \item Designed Web Application to remotely configure Base Station Routers
 \end{tightitemize}
 
-\sectionspace % Some whitespace after the section
-\sectionspace % Some whitespace after the section
+\sectionspace
+\sectionspace
 
 \runsubsection{RidgeviewTel}
 \descript{| Software Engineer Intern}
 
 \location{Jun 2010 – Jan 2012 | Longmont, CO}
-\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\vspace{\topsep}
 \begin{tightitemize}
 \item Designed Java Swing and Web applications to supplement use of the platform.
 \item Built system to import call and customer data into MySQL database
 \item Optimized conversion of AMA call-data-records to quadruple performance
 \end{tightitemize}
 
-\sectionspace % Some whitespace after the section
+\sectionspace
 
-%------------------------------------------------
-% Awards
-%------------------------------------------------
-%
+
 \runsubsection{Senior Project}
 \descript{| Source Code Manager}
 \location{Sep 2014 - May 2015 | https://github.com/jrahm/OpLabs}
 
-\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\vspace{\topsep}
 \begin{tightitemize}
 \item Responsible for owning, controlling and auditing Git repository and build server.
 \item Designed from scratch speed testing software in C++ to run on a router.
 \item Advanced skills in working and leading in a small team of 6 people.
 \end{tightitemize}
-\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\vspace{\topsep}
 
-\sectionspace % Some whitespace after the section
+\sectionspace
 
 
-\end{minipage} % The end of the right column
+\end{minipage}
 
-%----------------------------------------------------------------------------------------
-%	SECOND PAGE (EXAMPLE)
-%----------------------------------------------------------------------------------------
 
-%\newpage % Start a new page
 
-%\begin{minipage}[t]{0.33\textwidth} % The left column takes up 33% of the text width of the page
 
-%\section{Example Section}
 
-%\end{minipage} % The end of the left column
-%\hfill
-%\begin{minipage}[t]{0.66\textwidth} % The right column takes up 66% of the text width of the page
 
-%\section{Example Section 2}
 
-%\end{minipage} % The end of the right column
 
-%----------------------------------------------------------------------------------------
 
+\lastupdated
 \end{document}
