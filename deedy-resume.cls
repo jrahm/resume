@@ -20,6 +20,7 @@
 
 \definecolor{primary}{HTML}{101010}
 \definecolor{headings}{HTML}{202020}
+\definecolor{topheadings}{HTML}{8080c0}
 \definecolor{subheadings}{HTML}{000000}
 \definecolor{date}{HTML}{666666}
 
@@ -87,7 +88,7 @@ Last Updated on \today
 \newcommand{\sectionspace}{\vspace{8pt}}
 
 \titleformat{\section}{
-\color{headings}\fontspec[Path = fonts/lato/]{Lato-Reg}\fontsize{16pt}{24pt}\selectfont\uppercase}{}{1em}{}
+\color{topheadings}\fontspec[Path = fonts/lato/]{Lato-Reg}\fontsize{16pt}{24pt}\selectfont\uppercase}{}{1em}{}
 
 \titleformat{\subsection}{
 \color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont}{}{0em}{}
