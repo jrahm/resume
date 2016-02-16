@@ -1,7 +1,3 @@
-
-
-
-
 \ProvidesClass{deedy-resume}[2014/04/30 CV class]
 \NeedsTeXFormat{LaTeX2e}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -12,10 +8,6 @@
 \usepackage{hyperref}
 \usepackage{amssymb}
 
-
-
-
-
 \usepackage[usenames,dvipsnames]{xcolor}
 
 \definecolor{primary}{HTML}{101010}
@@ -24,19 +16,11 @@
 \definecolor{subheadings}{HTML}{000000}
 \definecolor{date}{HTML}{666666}
 
-
-
-
-
 \usepackage{fontspec}
 
 \setmainfont[Color=primary, Path = fonts/lato/,BoldItalicFont=Lato-RegIta,BoldFont=Lato-Reg,ItalicFont=Lato-LigIta]{Lato-Lig}
 
 \setsansfont[Scale=MatchLowercase,Mapping=tex-text, Path = fonts/raleway/]{Raleway-ExtraLight}
-
-
-
-
 
 \usepackage[absolute]{textpos}
 \usepackage[UKenglish]{isodate}
@@ -51,12 +35,8 @@
 Last Updated on \today
 \end{textblock}}
 
-
-
-
-
 \newcommand{\chrule}[1]{\begin{minipage}{#1}
-        \begin{mdframed}[rightline=false, leftline=false, bottomline=false]
+        \begin{mdframed}[rightline=false, leftline=false, bottomline=false, linewidth=1pt]
         \end{mdframed}
         \end{minipage}}
 
@@ -76,10 +56,6 @@ Last Updated on \today
 \color{headings}
 \fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{11pt}\selectfont #3}
 }
-
-
-
-
 
 \usepackage[center]{titlesec}
 
@@ -105,16 +81,12 @@ Last Updated on \today
 \newcommand{\lstyle}[1]{
 \fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont \textcolor{headings}{#1}\normalfont}
 
-
-
-
-
 \newenvironment{tightitemize}
 {\vspace{-\topsep}\begin{itemize}\itemsep1pt \parskip0pt \parsep0pt}
 {\end{itemize}\vspace{-\topsep}}
 
 \usepackage{enumitem}
-\renewcommand{\labelitemi}{\textcolor{black}{$\rightarrow$}}
+\renewcommand{\labelitemi}{\textcolor{topheadings}{$\rightarrow$}}
 
 \newcommand{\separatepages}[4]{%
     \vspace{2.5pt}

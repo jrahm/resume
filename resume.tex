@@ -4,6 +4,7 @@
 \usepackage{svg}
 \usepackage{calc}
 \usepackage{tikz}
+\usepackage{xfrac}
 \usepackage{environ}
 
 \makeatletter
@@ -36,39 +37,36 @@
 
     \vspace{0pt}
 
-    \begin{minipage}{0.9\textwidth}
-        \begin{center}
+\begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (namesection) at (0,0) {%
+        \begin{minipage}{0.9\textwidth}
+            \begin{center}
 
-            \fontsize{24pt}{24pt}
-            \fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont{Josh}
-            \fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont{Rahm}
+                \fontsize{24pt}{24pt}
+                \fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont{Josh}
+                \fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont{Rahm}
 
-            \includesvg[height=20pt]{blackbird3-outlinesvg}
+                \includesvg[height=20pt]{blackbird3-outlinesvg}
 
-            \lstyle{%
-                joshuarahm@gmail.com \\
-                (720) 243 2230
-                \\[5pt]
-                1953 Goss St. Apt. \#4 \\
-                Boulder, CO 80302
-            }
+                \lstyle{%
+                    joshuarahm@gmail.com \\
+                    (720) 243 2230
+                    \\[5pt]
+                    1953 Goss St. Apt. \#4 \\
+                    Boulder, CO 80302
+                }
 
-        \vspace{3pt}
-        \begin{scaletikzpicturetowidth}{0.5\textwidth}
-            \begin{tikzpicture}[scale=\tikzscale]
-                \draw[black] (0, 0) -- (1, 0);
-            \end{tikzpicture}
-        \end{scaletikzpicturetowidth}
+            \end{center}
+        \end{minipage}
+    };
 
-        \end{center}
-    \end{minipage}
-    \begin{minipage}{0.08\textwidth}
-        \begin{tikzpicture}
-            \draw[black] (0,1) -- (0,-1);
-        \end{tikzpicture}
-    \end{minipage}
+    \begin{scope}[x={(namesection.south east)},y={(namesection.north west)}]
+        \draw[line width=0.15em, color=topheadings] (0.95, 0.25) -- (0.95, 0.75);
+        \draw[line width=0.15em, color=topheadings] (0.25, -10pt) -- (0.75, -10pt);
+    \end{scope}
+\end{tikzpicture}
+\vspace{10pt}
 
-    \vspace{10pt}
 \raggedright
 Highly skilled and versatile software engineer with over 6 years of personal,
 academic and professional success looking to exercise my skills building quality
@@ -86,8 +84,8 @@ software.
 \descript{MS/BS in Computer Science}
 \location{May 2016 (Expected) | Boulder, CO}
 \vspace{\topsep}
-\sepbullet \lstyle{Cum. GPA: 3.90 / 4.0} \\
-\sepbullet \lstyle{Major GPA: 3.94 / 4.0} \\
+\sepbullet \lstyle{Cum. GPA: $\sfrac{\text{3.90}}{\text{4.0}}$} \\
+\sepbullet \lstyle{Major GPA: $\sfrac{\text{3.94}}{\text{4.0}}$} \\
 \sepbullet Software Engineering Track \\
 \sepbullet College of Engineering \\
 \sepbullet Dean's List (All Semesters)
@@ -204,7 +202,6 @@ software.
 \item Created many unit, smoke, regression and integration tests
 \item Fashioned basic automated test suite to alert about build/test failures
 \end{tightitemize}
-\vspace{\topsep}
 
 \sectionspace
 
@@ -212,8 +209,6 @@ software.
 \descript{| Hacking Grader \& Research Assistant}
 \location{Sep 2014 - | Boulder, CO}
 \sectionspace
-
-
 
 
 \runsubsection{LGS Innovations \footnotesize{(Bell Labs)}}
