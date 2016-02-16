@@ -3,6 +3,21 @@
 \usepackage{textpos}
 \usepackage{svg}
 \usepackage{calc}
+\usepackage{tikz}
+\usepackage{environ}
+
+\makeatletter
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
 
 \usepackage{ifluatex}
 \ifluatex
@@ -28,7 +43,7 @@
             \fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont{Josh}
             \fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont{Rahm}
 
-            \includesvg[height=20pt]{blackbird3}
+            \includesvg[height=20pt]{blackbird3-outlinesvg}
 
             \lstyle{%
                 joshuarahm@gmail.com \\
@@ -38,12 +53,22 @@
                 Boulder, CO 80302
             }
 
-            \vspace{10pt}
-            \xdash[6em]
-            \vspace{10pt}
-        \end{center}
-    \end{minipage}\cvrule{0pt}{5em}
+        \vspace{3pt}
+        \begin{scaletikzpicturetowidth}{0.5\textwidth}
+            \begin{tikzpicture}[scale=\tikzscale]
+                \draw[black] (0, 0) -- (1, 0);
+            \end{tikzpicture}
+        \end{scaletikzpicturetowidth}
 
+        \end{center}
+    \end{minipage}
+    \begin{minipage}{0.08\textwidth}
+        \begin{tikzpicture}
+            \draw[black] (0,1) -- (0,-1);
+        \end{tikzpicture}
+    \end{minipage}
+
+    \vspace{10pt}
 \raggedright
 Highly skilled and versatile software engineer with over 6 years of personal,
 academic and professional success looking to exercise my skills building quality
