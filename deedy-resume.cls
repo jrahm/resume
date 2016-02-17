@@ -2,13 +2,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
-\LoadClass{article}
+\LoadClass[tikz]{article}
 
 \usepackage[hmargin=0.625cm, vmargin=0.375cm]{geometry}
 \usepackage{hyperref}
 \usepackage{amssymb}
 
-\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
 
 \definecolor{primary}{HTML}{101010}
 \definecolor{headings}{HTML}{202020}
@@ -64,7 +68,7 @@ Last Updated on \today
 \newcommand{\sectionspace}{\vspace{8pt}}
 
 \titleformat{\section}{
-\color{topheadings}\fontspec[Path = fonts/lato/]{Lato-Reg}\fontsize{16pt}{24pt}\selectfont\uppercase}{}{1em}{}
+\color{topheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{16pt}{24pt}\selectfont}{}{1em}{}
 
 \titleformat{\subsection}{
 \color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont}{}{0em}{}
@@ -97,6 +101,55 @@ Last Updated on \today
         #4
     \end{minipage}
     \vspace{2.5pt}
+}
+
+\newcommand{\sidesection}[2]{%
+    \def\lhs{\rotatebox{90}{\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont \textcolor{topheadings}{\textsc{#1}}\normalfont}}
+    \def\rhs{%
+            \begin{minipage}{\textwidth-2em}
+            #2
+            \vspace{2em}
+            \end{minipage}
+    }
+    \begin{tikzpicture}[<->]
+        \node[anchor=north west,inner sep=0] (title) at (0,0) {%
+            \lhs
+        };
+
+        \node[anchor=north west,inner sep=0] (sidesection) at (2em,0) {%
+            \rhs
+        };
+
+        \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings]
+                let \p{titlesouth} = (title.south),
+                    \p{ssouth} = (sidesection.south),
+                    \p{to} = (\x{titlesouth}, {min(\y{ssouth}, \y{titlesouth})})
+                    in
+                {(title.south) + (0, -5pt)}
+                -+ (\p{to});
+
+    \end{tikzpicture}
+}
+
+\newcommand{\sidesectionlast}[2]{%
+    \def\lhs{\rotatebox{90}{\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont \textcolor{topheadings}{\textsc{#1}}\normalfont}}
+    \def\rhs{%
+            \begin{minipage}{\textwidth-2em}
+            #2
+            \vspace{10pt}
+            \end{minipage}
+    }
+    \begin{tikzpicture}
+        \node[anchor=north west,inner sep=0] (title) at (0,0) {%
+            \lhs
+        };
+
+        \node[anchor=north west,inner sep=0] (sidesection) at (2em,0) {%
+            \rhs
+        };
+
+
+    \end{tikzpicture}
 }
 
 \newcommand*{\LargerCdot}{\raisebox{-0.25ex}{\scalebox{1.5}{$\cdot$}}}
