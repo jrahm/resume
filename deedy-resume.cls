@@ -86,7 +86,7 @@ Last Updated on \today
 {\end{itemize}\vspace{-\topsep}}
 
 \usepackage{enumitem}
-\renewcommand{\labelitemi}{\textcolor{topheadings}{$\rightarrow$}}
+\renewcommand{\labelitemi}{\textcolor{topheadings}{$\mathbf{\rightarrow}$}}
 
 \newcommand{\separatepages}[4]{%
     \vspace{2.5pt}
