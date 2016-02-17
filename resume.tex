@@ -37,7 +37,7 @@
 
     \vspace{0pt}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[<->]
     \node[anchor=south west,inner sep=0] (namesection) at (0,0) {%
         \begin{minipage}{0.9\textwidth}
             \begin{center}
@@ -62,11 +62,14 @@
     };
 
     \begin{scope}[x={(namesection.south east)},y={(namesection.north west)}]
-        \draw[line width=0.15em, color=topheadings] (0.95, 0.25) -- (0.95, 0.75);
-        \draw[line width=0.15em, color=topheadings] (0.25, -10pt) -- (0.75, -10pt);
+        \draw[-, line width=0.1em, color=topheadings] (0.95, 0) -- (0.95, 1);
+        \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings] (0.95, 1) -- (0.95, 0.99);
+        \draw[-, line width=0.1em, color=topheadings] ({0.5em + 10pt}, -10pt) -- (0.85, -10pt);
+        \draw[-, line width=0.1em, color=topheadings] (0.85,-10pt) arc (-90:0:0.10);
+        \draw[-, line width=0.1em, color=topheadings] (0.5em,-20pt) arc (180:90:10pt);
+        \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings] (0.5em, -20pt) -- (0.5em, -30pt);
     \end{scope}
 \end{tikzpicture}
-\vspace{10pt}
 
 \sidesection{Summary}{%
 \raggedright
