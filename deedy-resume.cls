@@ -4,19 +4,19 @@
 \ProcessOptions\relax
 \LoadClass[tikz]{article}
 
-\usepackage[hmargin=0.625cm, vmargin=0.375cm]{geometry}
+\usepackage[lmargin=0.625cm, vmargin=0.375cm, rmargin=0.5cm]{geometry}
 \usepackage{hyperref}
 \usepackage{amssymb}
 
 \usepackage{tikz}
 \usetikzlibrary{calc}
 \usetikzlibrary{positioning}
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows,shapes}
 \usetikzlibrary{arrows.meta}
 
 \definecolor{primary}{HTML}{101010}
 \definecolor{headings}{HTML}{202020}
-\definecolor{topheadings}{HTML}{8080c0}
+\definecolor{topheadings}{HTML}{F0a050}
 \definecolor{subheadings}{HTML}{000000}
 \definecolor{date}{HTML}{666666}
 
@@ -34,10 +34,12 @@
 \setlength{\TPHorizModule}{0.01\paperwidth}
 \setlength{\TPVertModule}{0.01\paperwidth}
 \newcommand{\lastupdated}{
-\begin{textblock}{25}(75,2)
+\begin{textblock}{25}(5,125)
 \color{date}\fontspec[Path = fonts/raleway/]{Raleway-ExtraLight}\fontsize{8pt}{10pt}\selectfont
 Last Updated on \today
 \end{textblock}}
+
+\tikzstyle{every picture}+=[remember picture]
 
 \newcommand{\chrule}[1]{\begin{minipage}{#1}
         \begin{mdframed}[rightline=false, leftline=false, bottomline=false, linewidth=1pt]
@@ -74,10 +76,11 @@ Last Updated on \today
 \color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont}{}{0em}{}
 
 \newcommand{\runsubsection}[1]{
-\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont\textsc{#1} \normalfont}
+\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont\textsc{#1} \normalfont
+}
 
 \newcommand{\descript}[1]{
-\color{subheadings}\raggedright\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont {#1 \\} \normalfont}
+\color{subheadings}\raggedright\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont {#1} \normalfont}
 
 \newcommand{\location}[1]{
 \color{headings}\raggedright\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont {#1\\} \normalfont}
@@ -149,6 +152,13 @@ Last Updated on \today
         };
 
 
+    \end{tikzpicture}
+}
+
+\newcommand{\trial}{%
+    \begin{tikzpicture}[<->,x=1em, y=1em]
+        \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings]
+                (0, 0) -+ (0, 0.25em);
     \end{tikzpicture}
 }
 
