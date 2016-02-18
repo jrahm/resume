@@ -4,7 +4,7 @@
 \ProcessOptions\relax
 \LoadClass[tikz]{article}
 
-\usepackage[lmargin=0.625cm, vmargin=0.375cm, rmargin=0.5cm]{geometry}
+\usepackage[lmargin=0.05in, vmargin=0.375cm, rmargin=0.5cm]{geometry}
 \usepackage{hyperref}
 \usepackage{amssymb}
 
@@ -34,7 +34,7 @@
 \setlength{\TPHorizModule}{0.01\paperwidth}
 \setlength{\TPVertModule}{0.01\paperwidth}
 \newcommand{\lastupdated}{
-\begin{textblock}{25}(5,125)
+\begin{textblock}{25}(0.4,10.5)
 \color{date}\fontspec[Path = fonts/raleway/]{Raleway-ExtraLight}\fontsize{8pt}{10pt}\selectfont
 Last Updated on \today
 \end{textblock}}
@@ -52,41 +52,33 @@ Last Updated on \today
         \end{mdframed}
         \end{minipage}}
 
-\newcommand{\namesection}[3]{
-\centering{
-\fontsize{30pt}{45pt}
-\fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont #1
-\fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont #2
-} \\[5pt]
-\centering{
-\color{headings}
-\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{11pt}\selectfont #3}
-}
-
 \usepackage[center]{titlesec}
 
 \titlespacing{\section}{0pt}{0pt}{0pt}
 \titlespacing{\subsection}{0pt}{0pt}{0pt}
-\newcommand{\sectionspace}{\vspace{8pt}}
+\newcommand{\sectionspace}{\vspace{5pt}}
 
 \titleformat{\section}{
-\color{topheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{16pt}{24pt}\selectfont}{}{1em}{}
+\color{topheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{11pt}\selectfont}{}{1em}{}
 
 \titleformat{\subsection}{
-\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont}{}{0em}{}
+\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont}{}{0em}{}
 
 \newcommand{\runsubsection}[1]{
-\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont\textsc{#1} \normalfont
+\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont\textsc{#1} \normalfont
 }
 
 \newcommand{\descript}[1]{
-\color{subheadings}\raggedright\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont {#1} \normalfont}
+\color{subheadings}\raggedright\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{13pt}\selectfont {#1} \normalfont}
 
 \newcommand{\location}[1]{
-\color{headings}\raggedright\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont {#1\\} \normalfont}
+\color{headings}\raggedright\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{12pt}\selectfont {#1\\} \normalfont\fontsize{10pt}{12pt}\selectfont}
 
 \newcommand{\lstyle}[1]{
 \fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont \textcolor{headings}{#1}\normalfont}
+
+\newcommand{\smalllstyle}[1]{
+\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{10pt}\selectfont \textcolor{headings}{#1}\normalfont}
 
 \newenvironment{tightitemize}
 {\vspace{-\topsep}\begin{itemize}\itemsep1pt \parskip0pt \parsep0pt}
@@ -107,29 +99,41 @@ Last Updated on \today
 }
 
 \newcommand{\sidesection}[2]{%
-    \def\lhs{\rotatebox{90}{\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont \textcolor{topheadings}{\textsc{#1}}\normalfont}}
     \def\rhs{%
             \begin{minipage}{\textwidth-2em}
+            \hspace{1em}\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont \textcolor{topheadings}{\textsc{#1}}\normalfont
+
             #2
-            \vspace{2em}
+            \vspace{1em}
             \end{minipage}
     }
     \begin{tikzpicture}[<->]
-        \node[anchor=north west,inner sep=0] (title) at (0,0) {%
-            \lhs
-        };
-
-        \node[anchor=north west,inner sep=0] (sidesection) at (2em,0) {%
+        \node[anchor=north west,inner sep=0] (sidesection) at (15pt,0) {%
             \rhs
         };
 
+        % \draw[-, line width=0.1em, color=topheadings]
+        %     let
+        %         \p{sw} = (sidesection.south west),
+        %         \p{height} = (0, \y{sw})
+        %         in
+        %     (0, 0) -- (\p{height}) ;
+
         \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings]
-                let \p{titlesouth} = (title.south),
-                    \p{ssouth} = (sidesection.south),
-                    \p{to} = (\x{titlesouth}, {min(\y{ssouth}, \y{titlesouth})})
-                    in
-                {(title.south) + (0, -5pt)}
-                -+ (\p{to});
+            let
+                \p{sw} = (sidesection.north west),
+                \p{height} = (0, \y{sw}),
+                \p{height1} = (0, {\y{sw}+0.01})
+                in
+            (\p{height1}) -- (\p{height}) ;
+
+        % \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings]
+        %         let \p{titlesouth} = (title.south),
+        %             \p{ssouth} = (sidesection.south),
+        %             \p{to} = (\x{titlesouth}, {min(\y{ssouth}, \y{titlesouth})})
+        %             in
+        %         {(title.south) + (0, -5pt)}
+        %         -+ (\p{to});
 
     \end{tikzpicture}
 }
@@ -139,7 +143,7 @@ Last Updated on \today
     \def\rhs{%
             \begin{minipage}{\textwidth-2em}
             #2
-            \vspace{10pt}
+            \vspace{1em}
             \end{minipage}
     }
     \begin{tikzpicture}
@@ -160,6 +164,111 @@ Last Updated on \today
         \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings]
                 (0, 0) -+ (0, 0.25em);
     \end{tikzpicture}
+}
+
+\newcommand{\project}[3]{%
+    \runsubsection{#1}\lstyle{| #2}\hfill\trial
+
+    \begin{adjustwidth}{0pt}{10pt}
+        #3
+    \end{adjustwidth}
+
+    \sectionspace
+}
+
+\newcommand{\work}[5]{%
+    \runsubsection{#1}
+    \descript{| #2}\hfill\trial
+
+    \location{#3 | #4}
+    \vspace{0.2em}
+    #5
+
+    \sectionspace
+}
+
+\newcommand{\namesection}[3]{%
+\vspace{0pt}
+
+\begin{tikzpicture}[<->,x=1pt,y=1pt]
+    \node[anchor=south west,inner sep=0] (namesection) at (0,0) {%
+        \begin{minipage}{\textwidth}
+            \begin{center}
+
+                \fontsize{24pt}{24pt}
+                \fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont{#1}
+                \fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont{#2}
+
+                \includesvg[height=20pt]{blackbird3-outlinesvg}
+
+                \lstyle{%
+                    #3
+                }
+
+            \end{center}
+        \end{minipage}
+    };
+
+    \draw[-, line width=0.1em, color=topheadings] % lower left arc%
+        {(namesection.south west)+(5, -20)}
+        arc (180:90:10);
+
+    % draw the bottom line
+    \draw[-, line width=0.1em, color=topheadings]
+        let
+            \p{sw} = (namesection.south west),
+            \p{se} = (namesection.south east),
+            \p{from} = ({\x{sw} + 15}, {\y{sw} - 10}),
+            \p{to} = ({\x{se} - 10}, {\y{se} - 10})
+        in
+        (\p{from}) -+ (\p{to}) ;
+
+    % the right arc
+    \draw[-, line width=0.1em, color=topheadings] % lower left arc%
+        {(namesection.south east)+(-10, -10)}
+        arc (-90:0:10);
+
+    % the right line
+    \draw[-, line width=0.1em, color=topheadings]
+        (namesection.south east) -+ (namesection.north east) ;
+
+    % top arrow
+    \draw[-{Stealth[scale=2, length=4, width=4]},
+          line width=0.1em, color=topheadings]
+            {(namesection.north east) + (0, 0.01)} -- (namesection.north east);
+
+    % the left line
+    \draw[-, line width=0.1em, color=topheadings]
+        let
+            \p{sw} = (namesection.south west),
+            \p{nw} = (namesection.north west),
+            \p{from} = ({\x{sw} + 5pt, \y{sw} - 20pt}),
+            \p{to} = ({\x{nw} + 5pt, \y{nw}})
+        in
+        (\p{from}) -+ (\p{to}) ;
+
+    % the left arrow
+    \draw[-{Stealth[scale=2, length=4, width=4]},
+          line width=0.1em, color=topheadings]
+            let \p{nw} = (namesection.north west),
+                \p{to} = (\x{nw} + 5, \y{nw})
+                in
+            {(namesection.north west) + (5, 0.01)} -- (\p{to});
+
+
+    \draw[-{Stealth[scale=2, length=4, width=4]},
+          line width=0.1em, color=topheadings]
+            (5, -20) -- (5, -30);
+
+    % \begin{scope}[x={(namesection.south east)},y={(namesection.north west)}]
+    %     \draw[-, line width=0.1em, color=topheadings] (0.95, -0.03) -- (0.95, 1);
+    %     \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings] (0.95, 1) -- (0.95, 0.99);
+    %     \draw[-, line width=0.1em, color=topheadings] ({0.5em + 10pt}, -10pt) -- (0.88, -10pt);
+    %     \draw[-, line width=0.1em, color=topheadings] (0.88,-10pt) arc (-90:0:0.07);
+    %     \draw[-, line width=0.1em, color=topheadings] (0.5em,-20pt) arc (180:90:10pt);
+    %     \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings] (0.5em, -20pt) -- (0.5em, -30pt);
+    % \end{scope}
+\end{tikzpicture}
 }
 
 \newcommand*{\LargerCdot}{\raisebox{-0.25ex}{\scalebox{1.5}{$\cdot$}}}

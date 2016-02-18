@@ -6,6 +6,7 @@
 \usepackage{tikz}
 \usepackage{xfrac}
 \usepackage{environ}
+\usepackage{changepage}
 
 \makeatletter
 \newsavebox{\measure@tikzpicture}
@@ -41,6 +42,20 @@
 \end{tikzpicture}
 \end{textblock}
 
+\begin{textblock}{1}(0.098,0) % adjust this!
+\begin{tikzpicture}[x=1in,y=1in]
+    \draw[-, line width=0.1em, color=topheadings]
+            (0, 0) -+ (0, 11);
+\end{tikzpicture}
+\end{textblock}
+
+\begin{textblock}{1}(2.580,0) % adjust this!
+\begin{tikzpicture}[x=1in,y=1in]
+    \draw[-, line width=0.1em, color=topheadings]
+            (0, 0) -+ (0, 0.35);
+\end{tikzpicture}
+\end{textblock}
+
 \newcommand*{\xdash}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
 \begin{minipage}[t]{0.30\textwidth}
@@ -72,7 +87,7 @@
     };
 
     \draw[-, line width=0.1em, color=topheadings] % lower left arc%
-        {(namesection.south west)+(5, -20)}
+        {(namesection.south west)+(0, -20)}
         arc (180:90:10);
 
     % draw the bottom line
@@ -80,7 +95,7 @@
         let
             \p{sw} = (namesection.south west),
             \p{se} = (namesection.south east),
-            \p{from} = ({\x{sw} + 15}, {\y{sw} - 10}),
+            \p{from} = ({\x{sw} + 10}, {\y{sw} - 10}),
             \p{to} = ({\x{se} - 10}, {\y{se} - 10})
         in
         (\p{from}) -+ (\p{to}) ;
@@ -99,9 +114,24 @@
           line width=0.1em, color=topheadings]
             {(namesection.north east) + (0, 0.01)} -- (namesection.north east);
 
+    % the left line
+    %\draw[-, line width=0.1em, color=topheadings]
+    %    let
+    %        \p{sw} = (namesection.south west),
+    %        \p{nw} = (namesection.north west),
+    %        \p{from} = ({\x{sw}, \y{sw} - 20pt}),
+    %        \p{to} = ({\x{nw}, \y{nw}})
+    %    in
+    %    (\p{from}) -+ (\p{to}) ;
+
+    % the left arrow
     \draw[-{Stealth[scale=2, length=4, width=4]},
           line width=0.1em, color=topheadings]
-            (5, -20) -- (5, -30);
+            let \p{nw} = (namesection.north west),
+                \p{to} = (\x{nw}, \y{nw})
+                in
+            {(namesection.north west) + (0, 0.01)} -- (\p{to});
+
 
     % \begin{scope}[x={(namesection.south east)},y={(namesection.north west)}]
     %     \draw[-, line width=0.1em, color=topheadings] (0.95, -0.03) -- (0.95, 1);
@@ -114,11 +144,10 @@
 \end{tikzpicture}
 
 \sidesection{Summary}{%
-\raggedright
+\raggedright\fontsize{10pt}{10pt}\selectfont
 Highly skilled and versatile software engineer with over 6 years of personal,
 academic and professional success looking to exercise skills building quality
 software.
-
 }
 \sidesection{Education}{%
     \subsection{University of Colorado}
@@ -134,21 +163,32 @@ software.
     \sepbullet College of Engineering \\
     \sepbullet Dean's List (All Semesters)
 }
+\sidesection{Links}{%
+    \lstyle{Github}
+    https://github.com/jrahm
+
+    \lstyle{Website}
+    http://jarahm.com
+}
 \sidesection{Coursework}{%
     \raggedright
-    \lstyle{
-        \begin{tightitemize}
-            \item Ethical Hacking
-            \item Design \& Analysis of Algorithms
-            \item Network Systems
-            \item Foundations of Software Engineering
-            \item Fundamental Concepts of Programming Languages
-        \end{tightitemize}
+    \smalllstyle{
+            Ethical Hacking \\
+            \vspace{8pt}
+            Design \& Analysis of Algorithms \\
+            \vspace{8pt}
+            Network Systems \\
+            \vspace{8pt}
+            Foundations of Software Engineering \\
+            \vspace{8pt}
+            Fundamental Concepts of Programming Languages
     }
 }
 \sidesection{Achievements}{%
 
-\separatepages{0.4}{0.58}{\lstyle{17 Sep 2014}}
+    \raggedright\fontsize{10pt}{10pt}\selectfont
+
+    \separatepages{0.4}{0.58}{\lstyle{17 Sep 2014}}
     {\raggedright AppSec 2014 CTF, Tied for 1st}
 
     \separatepages{0.4}{0.58}{\lstyle{1 Mar 2014}}
@@ -162,14 +202,6 @@ software.
 
     \separatepages{0.4}{0.58}{\lstyle{8 Feb 2009}}
     {\raggedright District Tech Fair 3rd Place}
-}
-
-\sidesectionlast{Links}{%
-    \lstyle{Github}
-    https://github.com/jrahm
-
-    \lstyle{Website}
-    http://jarahm.com
 }
 
 % \sidesection{Proj}{%
@@ -205,89 +237,75 @@ software.
 \sepbullet Concurrent\sepbullet OpenGL\sepbullet Embedded\sepbullet Agile}
 
 \section{Experience}
-\runsubsection{Google}
-\descript{| Software Engineer}\hfill\trial
 
-\location{Jun 2016 (Expected) | Boulder, CO}
-\sectionspace
-\sectionspace
+\work{Google}{Software Engineer}
+     {Jun 2016 (Expected)}{Boulder, CO}{}
 
-\runsubsection{Seagate Technology}
-\descript{| Software Engineer Intern}\hfill\trial
+\work{Seagate Technology}{Software Engineer Intern}
+     {May 2015 - Aug 2015}{Longmont, CO}{%
+        \begin{tightitemize}
+        \item Patched subsystem to use parallelism to enhance user experience.
+        \item Extended desktop application written in C++ and wxWidgets.
+        \item Refactored and restructured subsystem interaction.
+        \item Reduced memory usage by nearly 50\% by using optimal data structures
+        \item Redesigned and refactored ANSI-compliant terminal emulator.
+        \item Designed communication layer between JavaScript and C++ front-end code.
+        \item Wrote scripts for automatically testing application as a cron-job.
+        \item Implemented features to various python scripts
+        \item Gained heavy experience using Git with Subversion.
+        \end{tightitemize}
+}
 
-\location{May 2015 - Aug 2015 | Longmont, CO}
-\vspace{\topsep}
-\begin{tightitemize}
-\item Patched subsystem to use parallelism to enhance user experience.
-\item Extended desktop application written in C++ and wxWidgets.
-\item Refactored and restructured subsystem interaction.
-\item Reduced memory usage by nearly 50\% by using optimal data structures
-\item Redesigned and refactored ANSI-compliant terminal emulator.
-\item Designed communication layer between JavaScript and C++ front-end code.
-\item Wrote scripts for automatically testing application as a cron-job.
-\item Implemented features to various python scripts
-\item Gained heavy experience using Git with Subversion.
-\end{tightitemize}
+\work{University of Colorado}{Ethical Hacking Grader \& Research Assistant}
+     {Sep 2014 - Present}{Boulder, CO}{}
 
-\sectionspace
+\work{LGS Innovations \footnotesize{Bell Labs}}{Software Engineer Intern}
+     {May 2012 - Aug 2014 (Summers)}{Westminster, CO}{%
+        \begin{tightitemize}
+        \item Demonstrated functionality of end product to other engineers and customers
+        \item Developed advanced point to point routing layer for wireless sensor network
+        \item Interfaced with hardware modem to collect RF topology data
+        \item Used Code Collaborator to conduct code reviews
+        \item Securely transfered encrypted data over public network.
+        \item Created User-Space I2C drivers to interface with embedded sensors;
+        \item Constructed utilities to emulate and interface with serial devices
+        \item Developed WebSockets server built to Hixie76 and RFC6455 standards
+        \item Designed Web Application to remotely configure Base Station Routers
+        \end{tightitemize}
+}
 
-\runsubsection{Senior Project}
-\descript{| Source Code Manager}\hfill\trial
-
-\location{Sep 2014 - May 2015 | https://github.com/jrahm/OpLabs}
-
-\vspace{\topsep}
-\begin{tightitemize}
-\item Responsible for owning, controlling and auditing Git repository and build server.
-\item Designed from scratch speed testing software in C++ to run on a router.
-\item Advanced skills working and leading in a small team of 6 people.
-\item Created many unit, smoke, regression and integration tests
-\item Fashioned basic automated test suite to alert about build/test failures
-\end{tightitemize}
-
-\sectionspace
-
-\runsubsection{University of Colorado}
-\descript{| Hacking Grader \& Research Assistant}\hfill\trial
-
-\location{Sep 2014 - | Boulder, CO}
-\sectionspace
-
-
-\runsubsection{LGS Innovations \footnotesize{(Bell Labs)}}
-\descript{| Software Engineer Intern}\hfill\trial
-
-\location{May 2012 – Aug 2014 (Summers) | Westminster, CO}
-\vspace{\topsep}
-In large and small teams, demonstrated quality leadership and technical skills to develop advanced
-software solutions from start to completion.
-\vspace{\topsep}
-\begin{tightitemize}
-\item Demonstrated functionality of end product to other engineers and customers
-\item Developed advanced point to point routing layer for wireless sensor network
-\item Interfaced with hardware modem to collect RF topology data
-\item Used Code Collaborator to conduct code reviews
-\item Securely transfered encrypted data over public network.
-\item Created User-Space I2C drivers to interface with embedded sensors;
-\item Constructed utilities to emulate and interface with serial devices
-\item Developed WebSockets server built to Hixie76 and RFC6455 standards
-\item Designed Web Application to remotely configure Base Station Routers
-\end{tightitemize}
+\work{RidgeviewTel}{Software Engineer Intern}
+     {Jun 2010 – Jan 2012}{Longmont, CO}{%
+        \begin{tightitemize}
+        \item Designed Java Swing and Web applications to supplement use of the platform.
+        \item Built system to import call and customer data into MySQL database
+        \item Optimized conversion of AMA call-data-records to quadruple performance
+        \end{tightitemize}
+}
 
 \sectionspace
-\sectionspace
+\section{Projects}
 
-\runsubsection{RidgeviewTel}
-\descript{| Software Engineer Intern}\hfill\trial
+\project{Mercury (Senior Project)}{https://github.com/jrahm/OpLabs}{%
+    Embedded, router-end of a larger internet speed testing framework, written in C++
+    and cross-compiled for a MIPS processor running OpenWRT.
+}
 
-\location{Jun 2010 – Jan 2012 | Longmont, CO}
-\vspace{\topsep}
-\begin{tightitemize}
-\item Designed Java Swing and Web applications to supplement use of the platform.
-\item Built system to import call and customer data into MySQL database
-\item Optimized conversion of AMA call-data-records to quadruple performance
-\end{tightitemize}
+\project{DuckTest}{https://github.com/jrahm/ducktest}{%
+    Python type-checking tool written in Haskell. DuckTest uses several type-inferencing
+    and type-checking algorithms to check type consistency in well-formed Python source
+    code.
+}
 
+\project{Fry}{https://github.com/jrahm/fry}{%
+    A statically-typed, imperative programming languages featuring algebraic data types
+    and parametric polymorphism.
+}
+
+\project{AirStat}{https://github.com/jrahm/airstat}{%
+    Network monitoring software written in C using raw sockets. Designed to be highly
+    modular and extensible through a well-designed plugin system inspired by iptables.
+}
 
 \end{minipage}
 
