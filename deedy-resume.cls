@@ -16,7 +16,7 @@
 
 \definecolor{primary}{HTML}{101010}
 \definecolor{headings}{HTML}{202020}
-\definecolor{topheadings}{HTML}{F0a050}
+\definecolor{topheadings}{HTML}{40a0F0}
 \definecolor{subheadings}{HTML}{000000}
 \definecolor{date}{HTML}{666666}
 
@@ -30,6 +30,24 @@
 \usepackage[UKenglish]{isodate}
 \usepackage{mdframed}
 \usepackage{calc}
+\usepackage{luatextra}
+
+\begin{luacode*}
+selection="..." -- the characters we consider to be coloured
+    function capme(text)
+        text=" "..text -- the first letter of a string is also considered for change
+        text=unicode.utf8.gsub(text, "([%s{])("..selection..")", "%1\\colorme{%2}")
+        text=unicode.utf8.sub(text,2) -- delete that extra space
+        print(text) -- a new text written to the terminal
+        tex.print(text) -- deliver the result back to TeX
+    end -- function capme
+\end{luacode*}
+
+\def\capme#1{%
+    % We neither need \noexpand\textit nor \noexpand{#1} and \\textit.
+    \directlua{capme([[#1]])}
+}
+\def\colorme#1{{\color{topheadings}{\fontspec[Path = fonts/raleway/]{Raleway-Heavy}\fontsize{11pt}{11pt}\selectfont #1}}}
 
 \setlength{\TPHorizModule}{0.01\paperwidth}
 \setlength{\TPVertModule}{0.01\paperwidth}
@@ -59,7 +77,13 @@ Last Updated on \today
 \newcommand{\sectionspace}{\vspace{5pt}}
 
 \titleformat{\section}{
-\color{topheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{11pt}\selectfont}{}{1em}{}
+\fontspec[Path = fonts/raleway/]{Raleway-Bold}\fontsize{11pt}{11pt}\selectfont}{}{1em}{}
+
+\let\oldsection\section
+\renewcommand{\section}[1] {%
+    \oldsection{\capme{#1}}
+    \vspace{0.2cm}
+}
 
 \titleformat{\subsection}{
 \color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont}{}{0em}{}
@@ -72,10 +96,10 @@ Last Updated on \today
 \color{subheadings}\raggedright\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{13pt}\selectfont {#1} \normalfont}
 
 \newcommand{\location}[1]{
-\color{headings}\raggedright\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{12pt}\selectfont {#1\\} \normalfont\fontsize{10pt}{12pt}\selectfont}
+\color{headings}\raggedright\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{8pt}{12pt}\selectfont {#1\\} \normalfont\fontsize{9pt}{9pt}\selectfont}
 
 \newcommand{\lstyle}[1]{
-\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont \textcolor{headings}{#1}\normalfont}
+\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont \textcolor{headings}{#1}\normalfont\fontsize{9pt}{9pt}\selectfont}
 
 \newcommand{\smalllstyle}[1]{
 \fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{10pt}\selectfont \textcolor{headings}{#1}\normalfont}
@@ -101,10 +125,13 @@ Last Updated on \today
 \newcommand{\sidesection}[2]{%
     \def\rhs{%
             \begin{minipage}{\textwidth-2em}
-            \hspace{1em}\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{12pt}{12pt}\selectfont \textcolor{topheadings}{\textsc{#1}}\normalfont
+            \vspace{1em}
+
+            \hspace{1em}\fontspec[Path = fonts/raleway/]{Raleway-Bold}\fontsize{12pt}{12pt}\selectfont{\capme{#1}}\normalfont
+
+            \vspace{1em}
 
             #2
-            \vspace{1em}
             \end{minipage}
     }
     \begin{tikzpicture}[<->]
@@ -122,8 +149,8 @@ Last Updated on \today
         \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings]
             let
                 \p{sw} = (sidesection.north west),
-                \p{height} = (0, \y{sw}),
-                \p{height1} = (0, {\y{sw}+0.01})
+                \p{height} = (0, \y{sw}-1.45em),
+                \p{height1} = (-0.2, {\y{sw}-1.45em})
                 in
             (\p{height1}) -- (\p{height}) ;
 
@@ -162,7 +189,7 @@ Last Updated on \today
 \newcommand{\trial}{%
     \begin{tikzpicture}[<->,x=1em, y=1em]
         \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings]
-                (0, 0) -+ (0, 0.25em);
+                (0, 0) -+ (-0.1em, 0);
     \end{tikzpicture}
 }
 

@@ -35,26 +35,26 @@
 \setlength{\TPHorizModule}{1in}
 \setlength{\TPVertModule}{1in}
 
-\begin{textblock}{1}(8.035,0) % adjust this!
-\begin{tikzpicture}[x=1in,y=1in]
-    \draw[-, line width=0.1em, color=topheadings]
-            (0, 0) -+ (0, 11);
-\end{tikzpicture}
-\end{textblock}
-
-\begin{textblock}{1}(0.098,0) % adjust this!
-\begin{tikzpicture}[x=1in,y=1in]
-    \draw[-, line width=0.1em, color=topheadings]
-            (0, 0) -+ (0, 11);
-\end{tikzpicture}
-\end{textblock}
-
-\begin{textblock}{1}(2.580,0) % adjust this!
-\begin{tikzpicture}[x=1in,y=1in]
-    \draw[-, line width=0.1em, color=topheadings]
-            (0, 0) -+ (0, 0.35);
-\end{tikzpicture}
-\end{textblock}
+% \begin{textblock}{1}(8.035,0) % adjust this!
+% \begin{tikzpicture}[x=1in,y=1in]
+%     \draw[-, line width=0.1em, color=topheadings]
+%             (0, 0) -+ (0, 11);
+% \end{tikzpicture}
+% \end{textblock}
+%
+% \begin{textblock}{1}(0.098,0) % adjust this!
+% \begin{tikzpicture}[x=1in,y=1in]
+%     \draw[-, line width=0.1em, color=topheadings]
+%             (0, 0) -+ (0, 11);
+% \end{tikzpicture}
+% \end{textblock}
+%
+% \begin{textblock}{1}(2.580,0) % adjust this!
+% \begin{tikzpicture}[x=1in,y=1in]
+%     \draw[-, line width=0.1em, color=topheadings]
+%             (0, 0) -+ (0, 0.35);
+% \end{tikzpicture}
+% \end{textblock}
 
 \newcommand*{\xdash}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
@@ -68,8 +68,8 @@
             \begin{center}
 
                 \fontsize{24pt}{24pt}
-                \fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont{Josh}
-                \fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont{Rahm}
+                \fontspec[Path = fonts/lato/]{Lato-Reg}\selectfont{Josh}
+                \fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\textcolor{topheadings}{Rahm}
 
                 \includesvg[height=20pt]{blackbird3-outlinesvg}
 
@@ -86,61 +86,61 @@
         \end{minipage}
     };
 
-    \draw[-, line width=0.1em, color=topheadings] % lower left arc%
-        {(namesection.south west)+(0, -20)}
-        arc (180:90:10);
+    % \draw[-, line width=0.1em, color=topheadings] % lower left arc%
+    %     {(namesection.south west)+(0, -20)}
+    %     arc (180:90:10);
 
-    % draw the bottom line
-    \draw[-, line width=0.1em, color=topheadings]
-        let
-            \p{sw} = (namesection.south west),
-            \p{se} = (namesection.south east),
-            \p{from} = ({\x{sw} + 10}, {\y{sw} - 10}),
-            \p{to} = ({\x{se} - 10}, {\y{se} - 10})
-        in
-        (\p{from}) -+ (\p{to}) ;
+    % % draw the bottom line
+    % \draw[-, line width=0.1em, color=topheadings]
+    %     let
+    %         \p{sw} = (namesection.south west),
+    %         \p{se} = (namesection.south east),
+    %         \p{from} = ({\x{sw} + 10}, {\y{sw} - 10}),
+    %         \p{to} = ({\x{se} - 10}, {\y{se} - 10})
+    %     in
+    %     (\p{from}) -+ (\p{to}) ;
 
-    % the right arc
-    \draw[-, line width=0.1em, color=topheadings] % lower left arc%
-        {(namesection.south east)+(-10, -10)}
-        arc (-90:0:10);
+    % % the right arc
+    % \draw[-, line width=0.1em, color=topheadings] % lower left arc%
+    %     {(namesection.south east)+(-10, -10)}
+    %     arc (-90:0:10);
 
-    % the right line
-    \draw[-, line width=0.1em, color=topheadings]
-        (namesection.south east) -+ (namesection.north east) ;
+    % % the right line
+    % \draw[-, line width=0.1em, color=topheadings]
+    %     (namesection.south east) -+ (namesection.north east) ;
 
-    % top arrow
-    \draw[-{Stealth[scale=2, length=4, width=4]},
-          line width=0.1em, color=topheadings]
-            {(namesection.north east) + (0, 0.01)} -- (namesection.north east);
+    % % top arrow
+    % \draw[-{Stealth[scale=2, length=4, width=4]},
+    %       line width=0.1em, color=topheadings]
+    %         {(namesection.north east) + (0, 0.01)} -- (namesection.north east);
 
-    % the left line
-    %\draw[-, line width=0.1em, color=topheadings]
-    %    let
-    %        \p{sw} = (namesection.south west),
-    %        \p{nw} = (namesection.north west),
-    %        \p{from} = ({\x{sw}, \y{sw} - 20pt}),
-    %        \p{to} = ({\x{nw}, \y{nw}})
-    %    in
-    %    (\p{from}) -+ (\p{to}) ;
+    % % the left line
+    % %\draw[-, line width=0.1em, color=topheadings]
+    % %    let
+    % %        \p{sw} = (namesection.south west),
+    % %        \p{nw} = (namesection.north west),
+    % %        \p{from} = ({\x{sw}, \y{sw} - 20pt}),
+    % %        \p{to} = ({\x{nw}, \y{nw}})
+    % %    in
+    % %    (\p{from}) -+ (\p{to}) ;
 
-    % the left arrow
-    \draw[-{Stealth[scale=2, length=4, width=4]},
-          line width=0.1em, color=topheadings]
-            let \p{nw} = (namesection.north west),
-                \p{to} = (\x{nw}, \y{nw})
-                in
-            {(namesection.north west) + (0, 0.01)} -- (\p{to});
+    % % the left arrow
+    % \draw[-{Stealth[scale=2, length=4, width=4]},
+    %       line width=0.1em, color=topheadings]
+    %         let \p{nw} = (namesection.north west),
+    %             \p{to} = (\x{nw}, \y{nw})
+    %             in
+    %         {(namesection.north west) + (0, 0.01)} -- (\p{to});
 
 
-    % \begin{scope}[x={(namesection.south east)},y={(namesection.north west)}]
-    %     \draw[-, line width=0.1em, color=topheadings] (0.95, -0.03) -- (0.95, 1);
-    %     \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings] (0.95, 1) -- (0.95, 0.99);
-    %     \draw[-, line width=0.1em, color=topheadings] ({0.5em + 10pt}, -10pt) -- (0.88, -10pt);
-    %     \draw[-, line width=0.1em, color=topheadings] (0.88,-10pt) arc (-90:0:0.07);
-    %     \draw[-, line width=0.1em, color=topheadings] (0.5em,-20pt) arc (180:90:10pt);
-    %     \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings] (0.5em, -20pt) -- (0.5em, -30pt);
-    % \end{scope}
+    % % \begin{scope}[x={(namesection.south east)},y={(namesection.north west)}]
+    % %     \draw[-, line width=0.1em, color=topheadings] (0.95, -0.03) -- (0.95, 1);
+    % %     \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings] (0.95, 1) -- (0.95, 0.99);
+    % %     \draw[-, line width=0.1em, color=topheadings] ({0.5em + 10pt}, -10pt) -- (0.88, -10pt);
+    % %     \draw[-, line width=0.1em, color=topheadings] (0.88,-10pt) arc (-90:0:0.07);
+    % %     \draw[-, line width=0.1em, color=topheadings] (0.5em,-20pt) arc (180:90:10pt);
+    % %     \draw[-{Stealth[scale=2, length=4, width=4]}, line width=0.1em, color=topheadings] (0.5em, -20pt) -- (0.5em, -30pt);
+    % % \end{scope}
 \end{tikzpicture}
 
 \sidesection{Summary}{%
